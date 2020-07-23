@@ -14,7 +14,9 @@
 
 Workaround for egg remote config.
 
-It will load remote config at agent's lifecycle, then write to file, then readFileSync at worker's lifecycle.
+Because Egg Config Loader is sync, but sometime we need to load remote config.
+
+So, this plugin will load remote config at agent's lifecycle, then write to file, then readFileSync at worker's lifecycle.
 
 ## Install
 
@@ -37,6 +39,11 @@ exports.remoteConfig = {
 ```js
 // {app_root}/config/config.default.js
 exports.remoteConfig = {
+  async handler(agent) {
+    // will override app.config
+    const { data } = await agent.curl('http://remote-url/config', { dataType: 'json', contentType: 'json' });
+    return data;
+  }
 };
 ```
 
