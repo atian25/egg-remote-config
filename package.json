@@ -1,0 +1,58 @@
+{
+  "name": "egg-remote-config",
+  "version": "1.0.0",
+  "description": "workaround for egg remote config",
+  "eggPlugin": {
+    "name": "remoteConfig"
+  },
+  "keywords": [
+    "egg",
+    "eggPlugin",
+    "egg-plugin"
+  ],
+  "dependencies": {
+
+  },
+  "devDependencies": {
+    "autod": "^3.1.0",
+    "autod-egg": "^1.1.0",
+    "egg": "^2.27.0",
+    "egg-bin": "^4.15.0",
+    "egg-ci": "^1.15.0",
+    "egg-mock": "^4.0.0",
+    "eslint": "^7.5.0",
+    "eslint-config-egg": "^8.0.1"
+  },
+  "engines": {
+    "node": ">=10.0.0"
+  },
+  "scripts": {
+    "test": "npm run lint -- --fix && egg-bin pkgfiles && npm run test-local",
+    "test-local": "egg-bin test",
+    "cov": "egg-bin cov",
+    "lint": "eslint .",
+    "ci": "egg-bin pkgfiles --check && npm run lint && npm run cov",
+    "pkgfiles": "egg-bin pkgfiles",
+    "autod": "autod"
+  },
+  "files": [
+    "app.js",
+    "agent.js",
+    "config",
+    "app"
+  ],
+  "ci": {
+    "version": "10, 12",
+    "type": "github"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:atian25/egg-remote-config.git"
+  },
+  "bugs": {
+    "url": "https://github.com/atian25/egg-remote-config/issues"
+  },
+  "homepage": "https://github.com/atian25/egg-remote-config#readme",
+  "author": "TZ <atain25@qq.com>",
+  "license": "MIT"
+}
