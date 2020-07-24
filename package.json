@@ -11,9 +11,11 @@
     "egg-plugin"
   ],
   "dependencies": {
-
+    "extend2": "^1.0.0",
+    "rimraf": "^3.0.2"
   },
   "devDependencies": {
+    "assert-file": "^1.0.0",
     "autod": "^3.1.0",
     "autod-egg": "^1.1.0",
     "egg": "^2.27.0",
@@ -21,7 +23,8 @@
     "egg-ci": "^1.15.0",
     "egg-mock": "^4.0.0",
     "eslint": "^7.5.0",
-    "eslint-config-egg": "^8.0.1"
+    "eslint-config-egg": "^8.0.1",
+    "mz-modules": "^2.1.0"
   },
   "engines": {
     "node": ">=10.0.0"
