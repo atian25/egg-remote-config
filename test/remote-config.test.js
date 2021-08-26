@@ -5,7 +5,6 @@ const assert = require('assert');
 const asserFile = require('assert-file');
 const path = require('path');
 const { rimraf, sleep } = require('mz-modules');
-const request = require('supertest');
 
 describe('test/remote-config.test.js', () => {
   let app;
@@ -52,7 +51,7 @@ describe('app worker reload', () => {
   after(() => app.close());
 
   it('should ok after reload', async () => {
-    const res = await request(app.callback()).get('/config').expect(200);
+    const res = await app.httpRequest().get('/config').expect(200);
     assert(res.body.foo === 'egg-remote-config');
     assert(res.body.sub.a === 'b');
     app.process.send({
@@ -60,7 +59,7 @@ describe('app worker reload', () => {
       action: 'reload-worker',
     });
     await sleep(20000);
-    const res2 = await request(app.callback()).get('/config').expect(200);
+    const res2 = await app.httpRequest().get('/config').expect(200);
     assert(res2.body.foo === 'egg-remote-config');
     assert(res2.body.sub.a === 'b');
   });
