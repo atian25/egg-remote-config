@@ -23,11 +23,12 @@ module.exports = class AgentBootHook {
       this.logger.info(`[RemoteConfig] loading remote config and save to ${this.filePath}`);
       const result = await handler(this.agent);
       await mkdirp(path.dirname(this.filePath), { recursive: true });
-      await writeFile(this.filePath, JSON.stringify(result || /* istanbul ignore next */{}, null, 2), 'utf-8');
+      await del(this.filePath);
+      await writeFile(this.filePath, JSON.stringify(result || /* istanbul ignore next */ {}, null, 2), 'utf-8');
     }
   }
 
-  async serverDidReady() {
+  async beforeClose() {
     await del(this.filePath);
   }
 };
